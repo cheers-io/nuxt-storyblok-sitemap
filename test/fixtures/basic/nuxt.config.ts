@@ -1,7 +1,8 @@
-import MyModule from '../../../src/module'
-
 export default defineNuxtConfig({
-  modules: [
-    MyModule
-  ]
-})
+  modules: ["../../../src/module"],
+  storyblokSitemap: {
+    accessToken: "abc",
+    baseUrl: "https://google.com",
+    defaultLocale: "en",
+  },
+});
