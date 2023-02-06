@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-storyblok-sitemap",
+  "name": "@cheers-io/nuxt-storyblok-sitemap",
   "version": "1.1.0",
   "description": "Generates a sitemap for content provided by Storyblok",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
-    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish --access public && git push --follow-tags",
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest watch"

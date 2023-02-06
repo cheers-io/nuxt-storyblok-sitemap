@@ -16,24 +16,24 @@
 
 ## Quick Setup
 
-1. Add `nuxt-storyblok-sitemap` dependency to your project
+1. Add `@cheers-io/nuxt-storyblok-sitemap` dependency to your project
 
 ```bash
 # Using npm
-npm install nuxt-storyblok-sitemap
+npm install @cheers-io/nuxt-storyblok-sitemap
 
 # Using pnpm
-pnpm add nuxt-storyblok-sitemap
+pnpm add @cheers-io/nuxt-storyblok-sitemap
 
 # Using yarn
-yarn add nuxt-storyblok-sitemap
+yarn add @cheers-io/nuxt-storyblok-sitemap
 ```
 
-2. Add `nuxt-storyblok-sitemap` to the `modules` section of `nuxt.config.ts`. Сonfiguration object can be passed in one of the following ways
+2. Add `@cheers-io/nuxt-storyblok-sitemap` to the `modules` section of `nuxt.config.ts`. Сonfiguration object can be passed in one of the following ways
 
 ```js
 export default defineNuxtConfig({
-  modules: ["nuxt-storyblok-sitemap"],
+  modules: ["@cheers-io/nuxt-storyblok-sitemap"],
   storyblokSitemap: {
     // config object
   },
@@ -45,7 +45,7 @@ or
 ```js
 export default defineNuxtConfig({
   modules: [
-    "nuxt-storyblok-sitemap",
+    "@cheers-io/nuxt-storyblok-sitemap",
     {
       // config object
     },
@@ -120,9 +120,9 @@ npm run release
 
 <!-- Badges -->
 
-[npm-version-src]: https://img.shields.io/npm/v/nuxt-storyblok-sitemap/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-version-href]: https://npmjs.com/package/nuxt-storyblok-sitemap
-[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-storyblok-sitemap.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-downloads-href]: https://npmjs.com/package/nuxt-storyblok-sitemap
-[license-src]: https://img.shields.io/npm/l/nuxt-storyblok-sitemap.svg?style=flat&colorA=18181B&colorB=28CF8D
-[license-href]: https://npmjs.com/package/nuxt-storyblok-sitemap
+[npm-version-src]: https://img.shields.io/npm/v/@cheers-io/nuxt-storyblok-sitemap/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-version-href]: https://npmjs.com/package/@cheers-io/nuxt-storyblok-sitemap
+[npm-downloads-src]: https://img.shields.io/npm/dm/@cheers-io/nuxt-storyblok-sitemap.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-downloads-href]: https://npmjs.com/package/@cheers-io/nuxt-storyblok-sitemap
+[license-src]: https://img.shields.io/npm/l/@cheers-io/nuxt-storyblok-sitemap.svg?style=flat&colorA=18181B&colorB=28CF8D
+[license-href]: https://npmjs.com/package/@cheers-io/nuxt-storyblok-sitemap

@@ -30,7 +30,7 @@ export interface ModulePrivateRuntimeConfig {
   perPage: number;
 }
 
-const moduleName = "nuxt-storyblok-sitemap";
+const moduleName = "@cheers-io/nuxt-storyblok-sitemap";
 const configKey = "storyblokSitemap";
 
 export default defineNuxtModule<ModuleOptions>({
