@@ -4,6 +4,10 @@
   "description": "Generates a sitemap for content provided by Storyblok",
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cheers-io/nuxt-storyblok-sitemap.git"
+  },
   "exports": {
     ".": {
       "import": "./dist/module.mjs",
