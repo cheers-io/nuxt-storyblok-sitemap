@@ -1,6 +1,6 @@
 {
   "name": "nuxt-storyblok-sitemap",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Generates a sitemap for content provided by Storyblok",
   "license": "MIT",
   "type": "module",
