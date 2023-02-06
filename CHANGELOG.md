@@ -1,6 +1,17 @@
 # Changelog
 
 
+## v1.2.1
+
+
+### 🏡 Chore
+
+  - Add git repository url (b00258f)
+
+### ❤️  Contributors
+
+- Aleksandr Sadykov <aleksandr.sadykov@cheers.io>
+
 ## v1.2.0
 
 
