@@ -19,6 +19,7 @@ export interface ModuleOptions {
   defaultLocale?: string;
   blacklist: string[];
   apiUrl: string;
+  uri: string;
 }
 
 export interface ModulePrivateRuntimeConfig {
@@ -45,6 +46,7 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     blacklist: [],
     apiUrl: "https://api.storyblok.com/v2/cdn/stories",
+    uri: "sitemap.xml",
   },
   async setup(options, nuxt) {
     if (!options.accessToken) {
@@ -75,7 +77,7 @@ export default defineNuxtModule<ModuleOptions>({
     };
 
     addServerHandler({
-      route: "/sitemap.xml",
+      route: `/${options.uri}`,
       handler: resolver.resolve("./runtime/handler"),
     });
   },
