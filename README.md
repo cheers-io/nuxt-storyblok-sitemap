@@ -69,13 +69,17 @@ export default defineNuxtConfig({
   // required
   defaultLocale: string;
 
-  // Can be used to filter out stories by full_slug via RegExp
+  // can be used to filter out stories by full_slug via RegExp
   // optional, default []
   blacklist: string[];
 
   // Storyblok API url
   // optional, default "https://api.storyblok.com/v2/cdn/stories"
   apiUrl: string;
+
+  // path to the sitemap file, relative to the website domain
+  // optional, default "sitemap.xml"
+  uri: string;
 }
 ```
 
