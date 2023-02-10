@@ -6,7 +6,7 @@ import {
   sendStream,
 } from "h3";
 import { SitemapStream } from "sitemap";
-import type { Story, ModulePrivateRuntimeConfig } from "../module";
+import type { Story } from "../module";
 
 interface SitemapDraft {
   url: string;
@@ -30,7 +30,7 @@ export default defineEventHandler(async (ev) => {
       apiUrl,
       perPage,
     },
-  } = useRuntimeConfig() as { storyblokSitemap: ModulePrivateRuntimeConfig };
+  } = useRuntimeConfig();
 
   // a container that holds all the stories returned by (possibly multiple) API requests
   const allStories = [];
@@ -42,16 +42,29 @@ export default defineEventHandler(async (ev) => {
     const _url = new URL(url);
     const _params = new URLSearchParams(params);
 
-    return (page: number) => {
+    return async (page: number) => {
       _params.set("page", String(page));
       _url.search = _params.toString();
 
-      return $fetch.raw<{ stories: Story[] }>(_url.toString());
+      const promise = $fetch.raw<{ stories: Story[]; cv: number }>(
+        _url.toString()
+      );
+      // is this the first call?
+      if (page === 1) {
+        // then read the `cv` property from the response
+        // and use it for the next requests to improve caching
+        const { _data } = await promise;
+        if (_data?.cv) {
+          _params.set("cv", String(_data.cv));
+        }
+      }
+      return promise;
     };
   };
   const getStoriesByPage = createStoriesFetcher(apiUrl, {
     token: accessToken,
     per_page: String(perPage),
+    version: "published",
   });
 
   const toSitemapDrafts = (story: Story): SitemapDraft[] => {
@@ -95,10 +108,11 @@ export default defineEventHandler(async (ev) => {
     allStories.push(..._data!.stories);
 
     // find out how many stories are available
-    // TODO: shameless "as" type assertion
-    const { total } = headers as Headers & { total: string };
+    const total = headers.get("total");
+
     // and how many pages are needed to fetch
     const maxPage = Math.ceil(Number(total) / perPage);
+
     // a container that holds all the promises for the 2nd page and following
     const promises = [];
 
