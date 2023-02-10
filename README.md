@@ -122,6 +122,16 @@ npm run test:watch
 npm run release
 ```
 
+## Contact
+
+Follow us on [Twitter](https://twitter.com/cheers_io), [LinkedIn](https://www.linkedin.com/company/cheers-io/) or visit our [website](https://www.cheers.io/). You can also write us an [email](mailto:hello@cheers.io).
+
+## License
+
+This project is licensed under the MIT license. For more information see the [LICENSE](LICENSE.md) file.
+
+Copyright 2023 - [cheers digital solutions GmbH](https://www.cheers.io/)
+
 <!-- Badges -->
 
 [npm-version-src]: https://img.shields.io/npm/v/@cheers-io/nuxt-storyblok-sitemap/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
