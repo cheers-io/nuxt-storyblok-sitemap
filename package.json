@@ -8,6 +8,14 @@
     "type": "git",
     "url": "https://github.com/cheers-io/nuxt-storyblok-sitemap.git"
   },
+  "keywords": [
+    "module",
+    "nuxt-module",
+    "nuxt",
+    "storyblok",
+    "sitemap",
+    "seo"
+  ],
   "exports": {
     ".": {
       "import": "./dist/module.mjs",
