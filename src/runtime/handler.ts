@@ -6,7 +6,7 @@ import {
   sendStream,
 } from "h3";
 import { SitemapStream } from "sitemap";
-import type { Story } from "../module";
+import type { StoryblokResponse, Story } from "../types";
 
 interface SitemapDraft {
   url: string;
@@ -33,21 +33,18 @@ export default defineEventHandler(async (ev) => {
   } = useRuntimeConfig();
 
   // a container that holds all the stories returned by (possibly multiple) API requests
-  const allStories = [];
+  const allStories: Story[] = [];
 
   const createStoriesFetcher = (
     url: string,
     params: Record<string, string>
   ) => {
-    const _url = new URL(url);
     const _params = new URLSearchParams(params);
 
     return async (page: number) => {
       _params.set("page", String(page));
-      _url.search = _params.toString();
-
-      const promise = $fetch.raw<{ stories: Story[]; cv: number }>(
-        _url.toString()
+      const promise = $fetch.raw<StoryblokResponse>(
+        `${url}?${_params.toString()}`
       );
       // is this the first call?
       if (page === 1) {
