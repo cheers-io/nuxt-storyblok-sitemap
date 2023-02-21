@@ -1,17 +1,5 @@
 import { defineNuxtModule, createResolver, addServerHandler } from "@nuxt/kit";
 
-export interface Story {
-  published_at: string;
-  slug: string;
-  full_slug: string;
-  path?: string;
-  lang: string;
-  translated_slugs?: {
-    path: string;
-    lang: Story["lang"];
-  }[];
-}
-
 // Module options TypeScript inteface definition
 export interface ModuleOptions {
   accessToken?: string;
