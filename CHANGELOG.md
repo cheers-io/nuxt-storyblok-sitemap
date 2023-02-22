@@ -1,6 +1,21 @@
 # Changelog
 
 
+## v1.3.1
+
+
+### 🏡 Chore
+
+  - **NO-TICKET:** Add keywords (57d9e66)
+  - **release:** V1.3.0 (9b3cb72)
+  - **NO-TICKET:** Add keywords (218b918)
+  - **release:** V1.3.0 (ed30f1e)
+  - **#4:** Add tests (#13)
+
+### ❤️  Contributors
+
+- Aleksandr Sadykov <aleksandr.sadykov@cheers.io>
+
 ## v1.3.0
 
 
