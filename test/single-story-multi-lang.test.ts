@@ -17,7 +17,6 @@ describe("single-story-multi-lang", async () => {
   await setup({
     rootDir: fileURLToPath(new URL("./fixtures/basic", import.meta.url)),
     nuxtConfig: {
-      modules: ["../src/module"],
       storyblokSitemap: storyblokSitemapConfig,
     },
   });

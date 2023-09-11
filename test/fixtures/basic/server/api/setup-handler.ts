@@ -1,4 +1,4 @@
-import { defineEventHandler } from "h3";
+import { defineEventHandler, getQuery, setHeader } from "h3";
 import { StoryblokResponse } from "@/../src/types";
 
 export const setupHandler = (response: StoryblokResponse) => {
