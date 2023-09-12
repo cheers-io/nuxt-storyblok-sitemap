@@ -3,7 +3,6 @@ import { describe, it, expect, beforeEach } from "vitest";
 import { fileURLToPath } from "node:url";
 import { setup, $fetch } from "@nuxt/test-utils";
 import { response } from "./fixtures/basic/response-mocks/single-story-single-lang";
-import { ModuleOptions } from "../src/module";
 import { getAbsoluteUrl } from "./utils";
 
 const storyblokSitemapConfig = {
@@ -11,7 +10,7 @@ const storyblokSitemapConfig = {
   baseUrl: "https://example.com",
   defaultLocale: "en",
   apiUrl: "/api/single-story-single-lang",
-} satisfies Partial<ModuleOptions>;
+};
 
 describe("single-story-single-lang", async () => {
   await setup({

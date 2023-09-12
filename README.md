@@ -65,8 +65,10 @@ export default defineNuxtConfig({
   // required
   baseUrl: string;
 
-  // default locale to be used for the original stories
-  // required
+  // default locale to be used for the stories with default language
+  // - if not provided, the sitemap will only contain entries for default Storyblok language
+  // - if provided, the sitemap will contain entries for all Storyblok languages (if any)
+  // optional, default ""
   defaultLocale: string;
 
   // can be used to filter out stories by full_slug via RegExp
