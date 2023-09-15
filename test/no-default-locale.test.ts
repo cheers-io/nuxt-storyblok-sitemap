@@ -6,7 +6,6 @@ describe("missed defaultLocale", async () => {
   await setup({
     rootDir: fileURLToPath(new URL("./fixtures/basic", import.meta.url)),
     nuxtConfig: {
-      modules: ["../src/module"],
       storyblokSitemap: {
         accessToken: "fake-token",
         baseUrl: "https://example.com",

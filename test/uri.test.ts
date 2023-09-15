@@ -16,7 +16,6 @@ describe("uri", async () => {
   await setup({
     rootDir: fileURLToPath(new URL("./fixtures/basic", import.meta.url)),
     nuxtConfig: {
-      modules: ["../src/module"],
       storyblokSitemap: storyblokSitemapConfig,
     },
   });
@@ -39,7 +38,7 @@ describe("uri", async () => {
     expect(htmlString).toContain("<div>basic</div>");
   });
 
-  it.only("creates a sitemap by the custom path", async () => {
+  it("creates a sitemap by the custom path", async () => {
     const xml = await $fetch(`/${storyblokSitemapConfig.uri}`);
 
     const domParser = new DOMParser();

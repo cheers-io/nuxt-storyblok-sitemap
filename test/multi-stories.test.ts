@@ -15,7 +15,6 @@ describe("multi-stories", async () => {
   await setup({
     rootDir: fileURLToPath(new URL("./fixtures/basic", import.meta.url)),
     nuxtConfig: {
-      modules: ["../src/module"],
       storyblokSitemap: storyblokSitemapConfig,
     },
   });

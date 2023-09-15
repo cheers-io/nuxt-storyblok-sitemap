@@ -6,7 +6,6 @@ describe("missed accessToken", async () => {
   await setup({
     rootDir: fileURLToPath(new URL("./fixtures/basic", import.meta.url)),
     nuxtConfig: {
-      modules: ["../src/module"],
       storyblokSitemap: {
         accessToken: "",
         baseUrl: "https://example.com",
