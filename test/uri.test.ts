@@ -2,7 +2,6 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { fileURLToPath } from "node:url";
 import { setup, $fetch } from "@nuxt/test-utils";
-import { ModuleOptions } from "../src/module";
 
 const storyblokSitemapConfig = {
   accessToken: "fake-token",
@@ -10,7 +9,7 @@ const storyblokSitemapConfig = {
   defaultLocale: "en",
   apiUrl: "/api/single-story-single-lang",
   uri: "custom-address.xml",
-} satisfies Partial<ModuleOptions>;
+};
 
 describe("uri", async () => {
   await setup({

@@ -7,11 +7,10 @@ const storyblokSitemapConfig = {
   accessToken: "fake-token",
   baseUrl: "https://example.com",
   defaultLocale: "en",
-  apiUrl: "/api/blacklist",
-  blacklist: ["^bad-"],
+  apiUrl: "/api/multi-stories-single-lang",
 };
 
-describe("blacklist", async () => {
+describe("multi-stories-single-lang", async () => {
   await setup({
     rootDir: fileURLToPath(new URL("./fixtures/basic", import.meta.url)),
     nuxtConfig: {
@@ -30,14 +29,8 @@ describe("blacklist", async () => {
     dom = domParser.parseFromString(xml, "application/xml");
   });
 
-  it("renders only one page", async () => {
+  it("renders all stories from multiple responses", async () => {
     const urls = dom.getElementsByTagName("url");
-    expect(urls).toHaveLength(1);
-  });
-
-  it("renders only good page", async () => {
-    const [url] = dom.getElementsByTagName("url");
-    const loc = url.getElementsByTagName("loc")[0]?.textContent;
-    expect(loc).toContain("good-");
+    expect(urls).toHaveLength(120);
   });
 });

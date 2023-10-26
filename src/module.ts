@@ -4,19 +4,10 @@ import { defineNuxtModule, createResolver, addServerHandler } from "@nuxt/kit";
 export interface ModuleOptions {
   accessToken?: string;
   baseUrl?: string;
-  defaultLocale?: string;
-  blacklist: string[];
-  apiUrl: string;
-  uri: string;
-}
-
-export interface ModulePrivateRuntimeConfig {
-  accessToken: string;
-  baseUrl: string;
   defaultLocale: string;
   blacklist: string[];
   apiUrl: string;
-  perPage: number;
+  uri: string;
 }
 
 const moduleName = "@cheers-io/nuxt-storyblok-sitemap";
@@ -32,6 +23,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   // Default configuration options of the Nuxt module
   defaults: {
+    defaultLocale: "",
     blacklist: [],
     apiUrl: "https://api.storyblok.com/v2/cdn/stories",
     uri: "sitemap.xml",
@@ -44,11 +36,6 @@ export default defineNuxtModule<ModuleOptions>({
 
     if (!options.baseUrl) {
       console.warn(`${moduleName}: baseUrl is not provided`);
-      return;
-    }
-
-    if (!options.defaultLocale) {
-      console.warn(`${moduleName}: defaultLocale is not provided`);
       return;
     }
 
@@ -70,9 +57,3 @@ export default defineNuxtModule<ModuleOptions>({
     });
   },
 });
-
-declare module "@nuxt/schema" {
-  interface RuntimeConfig {
-    [configKey]: ModulePrivateRuntimeConfig;
-  }
-}

@@ -8,15 +8,28 @@ import {
 import { SitemapStream } from "sitemap";
 import type { StoryblokResponse, Story } from "../types";
 
-interface SitemapDraft {
-  url: string;
-  lastmod?: string;
-  lang: string;
+interface SingleItemDraft {
+  type: 'single';
+  item: {
+    url: string;
+    lastmod: string;
+  };
 }
+
+interface MultiItemsDraft {
+  type: 'multi';
+  items: Array<{
+    url: string;
+    lastmod: string;
+    lang: string;
+  }>;
+}
+
+type SitemapDraft = SingleItemDraft | MultiItemsDraft;
 
 interface SitemapEntity {
   url: string;
-  lastmod?: string;
+  lastmod: string;
   links?: { url: string; lang: string }[];
 }
 
@@ -64,35 +77,49 @@ export default defineEventHandler(async (ev) => {
     version: "published",
   });
 
-  const toSitemapDrafts = (story: Story): SitemapDraft[] => {
-    // format the main story
-    const mainStory = {
-      url: story.path ? story.path : `/${story.full_slug}`,
-      lastmod: story.published_at,
-      lang: defaultLocale,
-    };
-    // and all its translated variations (if exist)
-    const translatedStories =
-      story.translated_slugs?.map(({ lang, path }) => {
-        return {
-          url: `/${lang}/${path === "home" ? "" : path}`,
-          lastmod: story.published_at,
-          lang,
-        };
-      }) || [];
-    return [mainStory].concat(translatedStories);
+  const toSitemapDrafts = (story: Story): SitemapDraft => {
+    // if a user didn't provide a default locale or the story doesn't have any translations
+    // then this story treated as a single-lang story
+    if (defaultLocale === "" || !story.translated_slugs) {
+      const mainStory = {
+        url: story.path ? story.path : `/${story.full_slug}`,
+        lastmod: story.published_at,
+      };
+      return {
+        type: "single",
+        item: mainStory,
+      };
+    } else {
+      // this is a multi-lang story and we have to process its localized variations
+      const mainStory = {
+        url: story.path ? story.path : `/${story.full_slug}`,
+        lastmod: story.published_at,
+        lang: defaultLocale,
+      };
+      // and all its translated variations (if exist)
+      const translatedStories =
+        story.translated_slugs?.map(({ lang, path }) => {
+          return {
+            url: `/${lang}/${path === "home" ? "" : path}`,
+            lastmod: story.published_at,
+            lang,
+          };
+        }) || [];
+      return {
+        type: 'multi',
+        items: [mainStory].concat(translatedStories),
+      };
+    }
   };
 
-  const toSitemapEntries = (drafts: SitemapDraft[]): SitemapEntity[] => {
-    if (drafts.length === 1) {
-      const [{ url, lastmod }] = drafts;
+  const toSitemapEntries = (draft: SitemapDraft): SitemapEntity[] => {
+    if (draft.type === 'single') {
+      const { url, lastmod } = draft.item;
       return [{ url, lastmod }];
     }
-    const links = drafts.map(({ url, lang }) => ({ url, lang }));
-    return drafts.reduce<SitemapEntity[]>((acc, { url, lastmod }) => {
-      acc.push({ url, lastmod, links });
-      return acc;
-    }, []);
+
+    const links = draft.items.map(({ url, lang }) => ({ url, lang }));
+    return draft.items.map(({ url, lastmod }) => ({ url, lastmod, links }));
   };
 
   setResponseHeader(ev, "Content-Type", "application/xml");

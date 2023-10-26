@@ -4,7 +4,6 @@ export default defineNuxtConfig({
     accessToken: "",
     baseUrl: "https://example.com/",
     defaultLocale: "en",
-    apiUrl: "/api/stories",
     blacklist: ["^global/", "^page-not-found$", "^job/"],
   },
 });

@@ -1,4 +1,5 @@
-import { describe, it, expect } from "vitest";
+// @vitest-environment jsdom
+import { describe, it, expect, beforeEach } from "vitest";
 import { fileURLToPath } from "node:url";
 import { setup, $fetch } from "@nuxt/test-utils";
 
@@ -9,15 +10,24 @@ describe("missed defaultLocale", async () => {
       storyblokSitemap: {
         accessToken: "fake-token",
         baseUrl: "https://example.com",
-        defaultLocale: "",
+        apiUrl: "/api/multi-stories-multi-lang",
       },
     },
   });
 
-  it("doesn't create a sitemap when no defaultLocale is provided", async () => {
-    const htmlString = await $fetch("/sitemap.xml");
+  let dom: Document;
 
-    expect(htmlString).toContain("<!DOCTYPE html>");
-    expect(htmlString).toContain("<div>basic</div>");
+  beforeEach(async () => {
+    if (dom) {
+      return;
+    }
+    const xml = await $fetch("/sitemap.xml");
+    const domParser = new DOMParser();
+    dom = domParser.parseFromString(xml, "application/xml");
+  });
+
+  it("creates a single-lang sitemap even for multi-lang source", async () => {
+    const urls = dom.getElementsByTagName("url");
+    expect(urls).toHaveLength(120);
   });
 });
