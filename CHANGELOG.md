@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.4.0
+
+[compare changes](https://github.com/cheers-io/nuxt-storyblok-sitemap/compare/v1.3.1...v1.4.0)
+
+### 🚀 Enhancements
+
+- **#5:** Make defaultLocale optional ([#19](https://github.com/cheers-io/nuxt-storyblok-sitemap/pull/19))
+- **#17:** Make defaultLocale optional ([#18](https://github.com/cheers-io/nuxt-storyblok-sitemap/pull/18))
+
+### ❤️ Contributors
+
+- Aleksandr Sadykov <sumerokr@gmail.com>
+
 ## v1.3.1
 
 
