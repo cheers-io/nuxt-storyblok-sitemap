@@ -1,9 +1,10 @@
 export default defineNuxtConfig({
   modules: ["../src/module"],
   storyblokSitemap: {
-    accessToken: "",
-    baseUrl: "https://example.com/",
-    defaultLocale: "en",
-    blacklist: ["^global/", "^page-not-found$", "^job/"],
+    accessToken: process.env.ACCESS_TOKEN,
+    baseUrl: process.env.BASE_URL,
+    defaultLocale: process.env.DEFAULT_LOCALE,
+    blacklist: process.env.BLACKLIST?.split(',') || [],
   },
+  compatibilityDate: "2024-11-07",
 });
