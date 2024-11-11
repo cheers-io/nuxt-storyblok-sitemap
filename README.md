@@ -124,6 +124,16 @@ npm run test:watch
 npm run release
 ```
 
+## How to use playground
+We already have an example environment file added to this project. To create your own environment file out of it, run following commands:
+
+```bash
+cd playground
+cp .env.example .env
+```
+
+You need to use a storyblok access token to develop the package. Update the values in `.env` file based on your needs. You can access the sitemap via `/sitemap.xml`. Blacklist items should be seperated by comma (`,`).
+
 ## Contact
 
 Follow us on [Twitter](https://twitter.com/cheers_io), [LinkedIn](https://www.linkedin.com/company/cheers-io/) or visit our [website](https://www.cheers.io/). You can also write us an [email](mailto:hello@cheers.io).
